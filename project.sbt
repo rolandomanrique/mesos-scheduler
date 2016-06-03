@@ -36,11 +36,13 @@ scalacOptions in Global := Seq(
 
 licenses in Global += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 
-lazy val mesosscheduler = project.in(file(".")).aggregate(core, example)
+lazy val mesosscheduler = project.in(file(".")).aggregate(core, example, mesoscon)
 
 lazy val core = project
 
 lazy val example = project.dependsOn(core % "test->test;compile->compile")
+
+lazy val mesoscon = project.dependsOn(core % "test->test;compile->compile")
 
 releaseCrossBuild := true
 
